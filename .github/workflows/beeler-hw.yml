@@ -21,5 +21,30 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - name: setup for windows
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+        cd ..
+        git clone https://github.com/Microsoft/vcpkg.git
+        cd vcpkg
+        git checkout --force 2020.01
+        .\bootstrap-vcpkg.bat
+        .\vcpkg.exe install cppzmq:x64-windows
+
+      - name: Running cmake (windows)
+        if: startsWith(matrix.config.os, 'windows')
+        run: |
+        cd ${{ github.workspace }}
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}
+                  /../vcpkg/scripts/buildsystems/vcpkg.cmake
+
+    - name: Build Solution (windows)
+      if: startsWith(matrix.config.os, 'windows')
+      run: |
+        cd build
+        MSBuild.exe CMakeHelloWorld.sln
+
       - run: make hello
       - run: ./hello
