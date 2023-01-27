@@ -4,6 +4,6 @@ on: [push]
 jobs:
   Run-Hello-World:
     runs-on: ubuntu-latest
-    setps:
+    steps:
       - run: make hello
       - run: ./hello
