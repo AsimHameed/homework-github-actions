@@ -24,6 +24,15 @@ jobs:
       - name: windows build
         if: startsWith(matrix.os, 'windows')
         run: sh compile.sh exe
+
+      - name: gitkeep
+        if: startsWith(matrix.os, 'windows')
+        run: rm artifacts/.gitkeep
+
+      - name: run windows
+        if: startsWith(matrix.os, 'windows')
+        run: /artifacts/hello.c
+
       # - name: setup for windows
       #   if: startsWith(matrix.os, 'windows')
       #   run: |
