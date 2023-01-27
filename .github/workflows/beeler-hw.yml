@@ -31,9 +31,9 @@ jobs:
         run: ./hello
 
       - name: other build
-        if: startsWith(matrix.os, 'ubuntu') | startsWith(matrix.os, 'macos')
+        if: ${{ matrix.os == ubuntu-latest || matrix.os == macos-latest }}
         run: make hello
 
       - name: other run
-        if: startsWith(matrix.os, 'ubuntu') | startsWith(matrix.os, 'macos')
+        if: ${{ matrix.os == ubuntu-latest || matrix.os == macos-latest }}
         run: ./hello
