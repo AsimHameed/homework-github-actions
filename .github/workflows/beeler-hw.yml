@@ -23,15 +23,19 @@ jobs:
       - uses: actions/checkout@v3
       - name: windows build
         if: startsWith(matrix.os, 'windows')
-        run: sh compile.sh exe
-
-      - name: gitkeep
+        run: gcc -Wall hello.c -o hello
+      - name: windows run
         if: startsWith(matrix.os, 'windows')
-        run: rm artifacts/.gitkeep
+        run: ./hello
+      #   run: sh compile.sh exe
 
-      - name: run windows
-        if: startsWith(matrix.os, 'windows')
-        run: /artifacts/hello.c
+      # - name: gitkeep
+      #   if: startsWith(matrix.os, 'windows')
+      #   run: rm artifacts/.gitkeep
+
+      # - name: run windows
+      #   if: startsWith(matrix.os, 'windows')
+      #   run: /artifacts/hello.c
 
       # - name: setup for windows
       #   if: startsWith(matrix.os, 'windows')
