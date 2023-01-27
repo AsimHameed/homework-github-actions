@@ -7,4 +7,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: make hello
+      - run sudo apt install build-essential
       - run: ./hello
