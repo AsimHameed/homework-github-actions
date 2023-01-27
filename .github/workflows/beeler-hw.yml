@@ -30,7 +30,10 @@ jobs:
         if: startsWith(matrix.os, 'windows')
         run: ./hello
 
-      - name: other run
+      - name: other build
         if: startsWith(matrix.os, 'ubuntu') | startsWith(matrix.os, 'macos')
         run: make hello
+
+      - name: other run
+        if: startsWith(matrix.os, 'ubuntu') | startsWith(matrix.os, 'macos')
         run: ./hello
