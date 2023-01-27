@@ -1,0 +1,9 @@
+name: GitHub Actions Homework
+run-name: Hello World Workflow
+on: [push]
+jobs:
+  Run-Hello-World:
+    runs-on: ubuntu-latest
+    setps:
+      - run: make hello
+      - run: ./hello
